@@ -11,12 +11,14 @@ public class ArticleParser {
 
     public static Set<Dictionary> parse(Article article){
         Map<String, Integer> countedWords = parseArticle(article.getArc_text());
-        Set<Dictionary> words = new LinkedHashSet<>(countedWords.size());
+        int articleSize = countedWords.size();
+        Set<Dictionary> words = new LinkedHashSet<>(articleSize);
         countedWords.forEach((word, amount) -> {
             Dictionary dictionary = new Dictionary();
             dictionary.setDic_word(word);
             dictionary.setDic_count(amount);
-            dictionary.setDic_in_article(article.getArt_id());
+            dictionary.setDic_in_article(1);
+            dictionary.setDic_sum_in_all(articleSize);
             words.add(dictionary);
         });
         return words;

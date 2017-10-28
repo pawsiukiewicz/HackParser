@@ -8,6 +8,7 @@ import pl.destyl.hackyah.hackparser.db.dto.Article;
 import pl.destyl.hackyah.hackparser.db.dto.Dictionary;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static pl.destyl.hackyah.hackparser.parser.ArticleParser.parse;
@@ -22,13 +23,14 @@ public class TestMain {
         ProductsDictDao productsDictDao = new ProductsDictDao();
         CategoryDictDao categoryDictDao = new CategoryDictDao();
 
-        List<Dictionary> words = new ArrayList<>();
-
         List<Article> articles = articleDao.getNotParsedArticle();
         for (Article article : articles) {
+            long time = System.currentTimeMillis();
             System.out.println(article.toString());
 
-            words.addAll(parse(article));
+            Collection<Dictionary> words = parse(article);
+            long timeParse = System.currentTimeMillis() - time;
+
             // kazde slowo jakie wystepuje w artykule musi by dodane do listy words.
 
             // na konie wynik wysylamy do bazy: przesylamy liste slow, kategorie artykulu, oraz jakiego produktu dotyczy.
@@ -39,21 +41,10 @@ public class TestMain {
             if (article.getArc_cat() > 0) {
                 categoryDictDao.updateListOfWord(words, article.getArc_cat());
             }
+            articleDao.setParsedArticle(article);
+            long fullArticleTime = System.currentTimeMillis() - time;
+            System.out.println("ParseTime =" +timeParse +" parse+setBase="+fullArticleTime);
         }
-
-        Dictionary word = new Dictionary();
-        word.setDic_word("test");
-        word.setDic_count(1);
-        word.setDic_prioryty(0);
-        word.setDic_sum_in_all(10);
-        word.setDic_in_article(1);
-
-        words.add(word);
-
-        dictionaryDao.updateListOfWord(words);
-
-        System.out.println(words.get(0));
-
         articleDao.close();
     }
 }

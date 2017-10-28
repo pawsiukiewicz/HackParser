@@ -5,6 +5,7 @@ import pl.destyl.hackyah.hackparser.db.dto.Dictionary;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class DictionaryDao extends AbstractDao {
 
     private static final String UPDATE_DICTIONARY = "UPDATE dictionary SET dic_count = ?, dic_sum_in_all = ?, dic_in_article = ? WHERE dic_id = ?";
 
-    public void updateListOfWord(List<Dictionary> words) {
+    public void updateListOfWord(Collection<Dictionary> words) {
 
         for (Dictionary word : words) {
             Dictionary wordFromDb = getWord(word.getDic_word());
@@ -56,10 +57,10 @@ public class DictionaryDao extends AbstractDao {
         try {
             PreparedStatement statement = getConnection().prepareStatement(INSERT_WORD);
             statement.setString(1, word.getDic_word());
-            statement.setInt(2, word.getDic_count());
-            statement.setInt(3, word.getDic_sum_in_all());
-            statement.setInt(4, word.getDic_in_article());
-            statement.setInt(5, word.getDic_prioryty());
+            statement.setInt(2, 0);
+            statement.setInt(3, 0);
+            statement.setInt(4, 0);
+            statement.setInt(5, 1);
 
             statement.execute();
         } catch (SQLException e) {

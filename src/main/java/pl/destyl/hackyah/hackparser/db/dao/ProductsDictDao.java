@@ -6,6 +6,7 @@ import pl.destyl.hackyah.hackparser.db.dto.ProductsDict;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class ProductsDictDao extends AbstractDao {
 
     private static final String UPDATE_PRODUCTS_DICT = "UPDATE products_dict SET pdc_count = ?, pdc_sum_in_all = ?, pdc_in_article = ? WHERE pdc_dic_id = ? AND pdc_prd_id = ?";
 
-    public void updateListOfWord(List<Dictionary> words, int prdId) {
+    public void updateListOfWord(Collection<Dictionary> words, int prdId) {
 
         for (Dictionary word : words) {
             ProductsDict wordFromDb = getWord(word.getDic_id(), prdId);

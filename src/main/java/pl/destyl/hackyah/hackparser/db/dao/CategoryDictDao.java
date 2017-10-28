@@ -6,6 +6,7 @@ import pl.destyl.hackyah.hackparser.db.dto.Dictionary;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class CategoryDictDao extends AbstractDao {
 
     private static final String UPDATE_PRODUCTS_DICT = "UPDATE category_dict SET cdt_count = ?, cdt_sum_in_all = ?, cdt_in_article = ? WHERE cdt_dic_id = ? AND cdt_cat_id = ?";
 
-    public void updateListOfWord(List<Dictionary> words, int catId) {
+    public void updateListOfWord(Collection<Dictionary> words, int catId) {
         for (Dictionary word : words) {
             CategoryDict wordFromDb = getWord(word.getDic_id(), catId);
             if (wordFromDb == null) {
