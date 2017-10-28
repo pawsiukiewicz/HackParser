@@ -12,7 +12,7 @@ import java.util.List;
  * Created by destyl on 2017-10-28.
  */
 public class CategoryDictDao extends AbstractDao {
-    private static final String SELECT_BY_WORD_CAT = "SELECT * FROM category_dict WHERE cdt_dic_id = ? AND cdt_prd_id = ?";
+    private static final String SELECT_BY_WORD_CAT = "SELECT * FROM category_dict WHERE cdt_dic_id = ? AND cdt_cat_id = ?";
 
     private static final String INSERT_WORD_CAT = "INSERT INTO category_dict (cdt_dic_id, cdt_cat_id, cdt_count, cdt_sum_in_all, cdt_in_article) VALUES (?,?,?,?,?)";
 
