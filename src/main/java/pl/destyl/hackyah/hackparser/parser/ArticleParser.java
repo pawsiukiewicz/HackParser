@@ -46,7 +46,7 @@ public class ArticleParser {
         PolishStemmer stemmer = new PolishStemmer();
         String[] stemmedWords = new String[words.length];
         for(int i=0; i<words.length; ++i) {
-            stemmedWords[i] = stemmer.lookup(words[i]).get(0).getStem().toString();
+            stemmedWords[i] = stemmer.lookup(words[i].toLowerCase()).get(0).getStem().toString();
         }
         return stemmedWords;
     }

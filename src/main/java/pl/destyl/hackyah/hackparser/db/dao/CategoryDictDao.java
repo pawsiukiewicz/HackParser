@@ -16,7 +16,7 @@ public class CategoryDictDao extends AbstractDao {
 
     private static final String INSERT_WORD_CAT = "INSERT INTO category_dict (cdt_dic_id, cdt_prd_id, cdt_count, cdt_sum_in_all, cdt_in_article) VALUES (?,?,?,?,?)";
 
-    private static final String UPDATE_PRODUCTS_DICT = "UPDATE category_dict SET cdt_count = ?, cdt_sum_in_all = ?, cdt_in_article = ? WHERE cdt_dic_id = ? AND cdt_prd_id = ?";
+    private static final String UPDATE_PRODUCTS_DICT = "UPDATE category_dict SET cdt_count = ?, cdt_sum_in_all = ?, cdt_in_article = ? WHERE cdt_dic_id = ? AND cdt_cat_id = ?";
 
     public void updateListOfWord(List<Dictionary> words, int catId) {
         for (Dictionary word : words) {
