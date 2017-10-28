@@ -23,7 +23,7 @@ public class TestMain {
         for (Article article : articles) {
             System.out.println(article.toString());
 
-            words.addAll(parse(article.getArc_text()));
+            words.addAll(parse(article));
             // kazde slowo jakie wystepuje w artykule musi by dodane do listy words.
 
             // na konie wynik wysylamy do bazy: przesylamy liste slow, kategorie artykulu, oraz jakiego produktu dotyczy.
