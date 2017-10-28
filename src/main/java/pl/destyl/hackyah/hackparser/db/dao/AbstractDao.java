@@ -33,6 +33,33 @@ public class AbstractDao {
         return null;
     }
 
+    protected ResultSet executeQuery(String query, String... params) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            for (int i = 0; i < params.length; i++) {
+                statement.setString(i + 1, params[i]);
+            }
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    protected ResultSet executeQuery(String query, int... params) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            for (int i = 0; i < params.length; i++) {
+                statement.setInt(i + 1, params[i]);
+            }
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     protected void executeUpdate(String query, int id) {
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);

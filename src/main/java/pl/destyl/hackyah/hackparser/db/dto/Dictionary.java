@@ -63,4 +63,7 @@ public class Dictionary {
     public void setDic_prioryty(int dic_prioryty) {
         this.dic_prioryty = dic_prioryty;
     }
+    public String toString() {
+        return "id="+dic_id+" word="+dic_word+" count"+dic_count;
+    }
 }

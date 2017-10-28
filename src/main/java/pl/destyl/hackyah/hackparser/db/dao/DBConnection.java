@@ -30,12 +30,12 @@ public class DBConnection {
     }
 
     private DBConnection() {
-        connection = getConnection();
+        connection = getConn();
         initialized = "YES";
     }
 
 
-    public Connection getConnection() {
+    private Connection getConn() {
         Connection conn = null;
 
         try {
@@ -47,6 +47,10 @@ public class DBConnection {
             e.printStackTrace();
         }
         return conn;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     public void close() {
