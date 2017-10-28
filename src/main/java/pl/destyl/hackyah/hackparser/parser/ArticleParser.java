@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class ArticleParser {
+    private static String delimiters = "\\s+|-|\\.|\\?|!";
+
+
     public static Set<Dictionary> parse(String article){
         return createDictionairies(parseArticle(article));
     }
@@ -24,7 +27,7 @@ public class ArticleParser {
     }
 
     private static Map<String,Integer> parseArticle(String article) {
-        String[] split = article.split(" ");
+        String[] split = article.split(delimiters);
         Map<String, Integer> hm = new HashMap<>();
 
         for (String aSplit : split) {
