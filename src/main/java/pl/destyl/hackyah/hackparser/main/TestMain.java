@@ -22,7 +22,7 @@ public class TestMain {
         ProductsDictDao productsDictDao = new ProductsDictDao();
         CategoryDictDao categoryDictDao = new CategoryDictDao();
 
-        List<Dictionary> words = new ArrayList<Dictionary>();
+        List<Dictionary> words = new ArrayList<>();
 
         List<Article> articles = articleDao.getNotParsedArticle();
         for (Article article : articles) {
