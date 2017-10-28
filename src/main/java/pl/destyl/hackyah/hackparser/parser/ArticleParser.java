@@ -1,8 +1,6 @@
 package pl.destyl.hackyah.hackparser.parser;
 
 import morfologik.stemming.polish.PolishStemmer;
-import morfologik.stemming.IStemmer;
-import morfologik.stemming.WordData;
 import pl.destyl.hackyah.hackparser.db.dto.Article;
 import pl.destyl.hackyah.hackparser.db.dto.Dictionary;
 
@@ -46,14 +44,14 @@ public class ArticleParser {
         PolishStemmer stemmer = new PolishStemmer();
         String[] stemmedWords = new String[words.length];
         for(int i=0; i<words.length; ++i) {
-            stemmedWords[i] = stemmer.lookup(words[i]).get(0).getStem().toString();
+            stemmedWords[i] = stemmer.lookup(words[i].toLowerCase()).get(0).getStem().toString();
         }
         return stemmedWords;
     }
 
     //Junit wersja lajt
     public static void main(String[] args) {
-        String[] testwords = {"bank", "banki", "banków", "bankowość", "bankowości"};
+        String[] testwords = {"Bank", "banki", "banków", "bankowość", "bankowości"};
         for(String s : stemWords(testwords)) System.out.println(s);
     }
 }
